@@ -12,7 +12,7 @@ containers:
   recce-gradle:
     image: eclipse-temurin:17-jdk
     ports:
-      - local: 8080
+      - local: 8090
         container: 8080
     volumes:
       - type: cache
@@ -37,7 +37,7 @@ containers:
       POSTGRES_USER: <{db-user}
       POSTGRES_PASSWORD: <{db-password}
     ports:
-      - local: 9000
+      - local: 9001
         container: 5432
     volumes:
       - type: cache
