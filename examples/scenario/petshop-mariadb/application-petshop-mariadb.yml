@@ -10,6 +10,10 @@ r2dbc:
       username: user
       password: password
       options: {}
+    default:
+      url: r2dbc:pool:postgresql://host.docker.internal:9000/db
+      username: user
+      password: password
 reconciliation:
   datasets:
     petstatus:
