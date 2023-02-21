@@ -1,3 +1,7 @@
+########################
+# Clean up this file
+########################
+
 r2dbc:
   datasources:
     source:
@@ -21,37 +25,3 @@ reconciliation:
       target:
         datasourceRef: target
         queryFile: examples/scenario/petshop-mariadb/queries/petshop-mariadb-pets-target.sql
-    order-status:
-      source:
-        datasourceRef: source
-        query: >
-          SELECT
-            order_status.id AS MigrationKey,
-            pet_name,
-            unix_timestamp(ordered_at),
-            CASE
-              WHEN status = 1 THEN 'placed'
-              WHEN status = 2 THEN 'approved'
-              WHEN status = 3 THEN 'delivered'
-            END AS status_text,
-            complete
-          FROM order_status
-      target:
-        datasourceRef: target
-        query: >
-          SELECT
-            order_status.id AS MigrationKey,
-            pet.name,
-            unix_timestamp(ordered_at),
-            order_status.status,
-            complete
-          FROM order_status INNER JOIN pet ON order_status.pet_id = pet.id
-    categories:
-      source:
-        datasourceRef: source
-        query: >
-          SELECT "# Categories" AS MigrationKey, count(distinct category) FROM pet
-      target:
-        datasourceRef: target
-        query: >
-          SELECT "# Categories" AS MigrationKey, count(*) FROM category
