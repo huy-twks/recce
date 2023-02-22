@@ -16,12 +16,10 @@ r2dbc:
       options: {}
 reconciliation:
   datasets:
-    pets:
+    order_status_count:
       source:
         datasourceRef: source
-        query: >
-          SELECT pet.id AS MigrationKey, category, name, status
-          FROM pet
+        queryFile: examples/scenario/petshop-postgres/queries/petshop-postgres-pets-source.sql
       target:
         datasourceRef: target
-        queryFile: examples/scenario/petshop-mariadb/queries/petshop-mariadb-pets-target.sql
+        queryFile: examples/scenario/petshop-postgres/queries/petshop-postgres-pets-target.sql
